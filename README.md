@@ -1,4 +1,4 @@
-# Introduction to Reinforcement Learning
+# Introduction to Reinforcement Learning 
 
 ### Blackjack
 There are 2 algorithm: Monte Carlo and Sarsa(?); the files are mc.py and sarsa_lambda.py. To train either one of them over 100000 episode for example run the following command
