@@ -114,7 +114,7 @@ for e in tqdm(range(EPISODES)):
 print('win: %d, lose: %d, draw: %d' %(win, lose, draw))
 print('win: %0.1f%%, lose: %0.1f%%, draw: %0.1f%%' %(win/EPISODES * 100, lose/EPISODES * 100, draw/EPISODES * 100))
 print('usable ace: %0.2f%%' %(has_ace/EPISODES * 100))
-print('HITS: %0.2f%%' %(hits_counter))
+print('HITS: %0.2d' %(hits_counter))
 
 fn = save_data(data=states, \
       prefix='montecarlo' + ('-biased' if use_bias_env else ''), iterations=EPISODES)

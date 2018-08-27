@@ -31,7 +31,7 @@ class Blackjack:
       if Blackjack.HITS == action: 
          self.player.append(self.draw())
          reward = -1 if self.is_busted(self.player_hand()) else 0
-         returns = 2 if self.has_morecards(self.player_cards()) and self.is_busted(self.player_hand()) != True else reward # Receive more rewards if player has more cards on his deck.  
+         returns = 2 if self.has_morecards(self.player_cards(), 4) and self.is_busted(self.player_hand()) != True else reward # Receive more rewards if player has more cards on his deck.  
 
          return (self.make_return_state(), returns, reward < 0)
 
@@ -71,12 +71,12 @@ class Blackjack:
             continue
 
          if self.is_busted(total):
-	         returns = 2 if self.has_morecards(self.player_cards()) else 1
+	         returns = 2 if self.has_morecards(self.player_cards(), 4) else 1
 	         return (self.make_return_state(), returns, True)
 	         #return (self.make_return_state(), 1, True)
 
          if total < player_hand:
-	         returns = 2 if self.has_morecards(self.player_cards()) else 1
+	         returns = 2 if self.has_morecards(self.player_cards(), 4) else 1
 	         return (self.make_return_state(), returns, True)
 	         #return (self.make_return_state(), 1, True)
 
@@ -84,7 +84,7 @@ class Blackjack:
 	         return (self.make_return_state(), -1, True)
 
          if total == player_hand:
-	         returns = 2 if self.has_morecards(self.player_cards()) else 0
+	         returns = 2 if self.has_morecards(self.player_cards(), 4) else 0
 	         return (self.make_return_state(), returns, True)
 	         #return (self.make_return_state(), 0, True)
 
@@ -127,8 +127,9 @@ class Blackjack:
    def is_blackjack(self, owner):
 	   return len(owner) == 2 and 10 in owner and 1 in owner
 
-   def has_morecards(self, owner):
-	   return len(owner) > 2
+   # Check if the player has more than a certain number of cards.
+   def has_morecards(self, owner, numcards):
+	   return len(owner) > numcards
 
    def to_action(self, action):
       if Blackjack.HITS == action:
