@@ -31,7 +31,7 @@ class Blackjack:
       if Blackjack.HITS == action: 
          self.player.append(self.draw())
          reward = -1 if self.is_busted(self.player_hand()) else 0
-         returns = 10 if self.has_morecards(self.player_cards()) and self.is_busted(self.player_hand()) != True else reward
+         returns = 2 if self.has_morecards(self.player_cards()) and self.is_busted(self.player_hand()) != True else reward # Receive more rewards if player has more cards on his deck.  
 
          return (self.make_return_state(), returns, reward < 0)
 
@@ -71,12 +71,12 @@ class Blackjack:
             continue
 
          if self.is_busted(total):
-	         returns = 10 if self.has_morecards(self.player_cards()) else 1
+	         returns = 2 if self.has_morecards(self.player_cards()) else 1
 	         return (self.make_return_state(), returns, True)
 	         #return (self.make_return_state(), 1, True)
 
          if total < player_hand:
-	         returns = 10 if self.has_morecards(self.player_cards()) else 1
+	         returns = 2 if self.has_morecards(self.player_cards()) else 1
 	         return (self.make_return_state(), returns, True)
 	         #return (self.make_return_state(), 1, True)
 
@@ -84,7 +84,7 @@ class Blackjack:
 	         return (self.make_return_state(), -1, True)
 
          if total == player_hand:
-	         returns = 10 if self.has_morecards(self.player_cards()) else 0
+	         returns = 2 if self.has_morecards(self.player_cards()) else 0
 	         return (self.make_return_state(), returns, True)
 	         #return (self.make_return_state(), 0, True)
 
